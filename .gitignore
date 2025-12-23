@@ -1,0 +1,28 @@
+# node
+node_modules/
+npm-debug.log*
+
+# databases
+*.db
+*.sqlite
+
+# builds / zips
+*.zip
+dist/
+frontend/dist/
+
+# OS / temp
+.DS_Store
+Thumbs.db
+
+# backups
+backup/
+*.bak
+
+# cloudflared binaries
+cloudflared
+ncloudflared
+
+# misc generated
+test.jpg
+test.jpgsdv
