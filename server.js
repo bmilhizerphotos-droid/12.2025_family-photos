@@ -2,19 +2,19 @@ import express from "express";
 import sqlite3 from "sqlite3";
 import fs from "fs";
 import path from "path";
-import cors from "cors"; // Added for cross-origin support
+import cors from "cors"; // The security helper we just installed
 
 const app = express();
 const PORT = 3000;
 
-// Enable CORS so the Cloud Run app can access this local server
+// This line tells the server it is okay to send data to your Google Cloud website
 app.use(cors()); 
 
-// DB
-const db = new sqlite3.Database("./photos.db");
-
-// JSON
+// JSON support
 app.use(express.json());
+
+// DB Connection
+const db = new sqlite3.Database("./photos.db");
 
 // -----------------------------
 // API: List photos
@@ -101,7 +101,6 @@ app.get("/photos/:id", (req, res) => {
   );
 });
 
-// -----------------------------
 app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);
 });
