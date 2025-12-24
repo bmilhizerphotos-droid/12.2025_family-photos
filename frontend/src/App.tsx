@@ -10,6 +10,7 @@ export default function App() {
 
   useEffect(() => {
     setLoading(true);
+    // This calls the service we just updated in Step 4
     getPhotos(200)
       .then((data) => {
         setPhotos(data);
@@ -17,7 +18,7 @@ export default function App() {
       })
       .catch((err) => {
         console.error("Failed to load photos:", err);
-        setError("Failed to load photos. Please check if your local server and Cloudflare tunnel are running.");
+        setError("Failed to load photos. Please check your local server and Cloudflare tunnel.");
       })
       .finally(() => {
         setLoading(false);
