@@ -23,12 +23,12 @@ jobs:
         env:
           VITE_API_BASE: ${{ secrets.VITE_API_BASE }}
           
-      - name: Deploy to Firebase
+     - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PHOTO_APP_F8102 }}'
+          # Updated this line to match your GitHub Secret name
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
           channelId: live
           projectId: photo-app-f8102
-          # This tells Firebase where the built files actually are
           entryPoint: ./frontend
