@@ -1,0 +1,71 @@
+/* App container */
+.app {
+  padding: 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* Title */
+.app h1 {
+  margin-bottom: 16px;
+}
+
+/* Error message */
+.error {
+  color: #ff6b6b;
+  margin-bottom: 12px;
+}
+
+/* ✅ THUMBNAIL GRID — THIS IS THE FIX */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+/* Thumbnails */
+.thumb {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.thumb:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15);
+}
+
+/* Modal overlay */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Full image */
+.full {
+  max-width: 92vw;
+  max-height: 92vh;
+  border-radius: 8px;
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  color: white;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+}
