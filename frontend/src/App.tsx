@@ -48,7 +48,7 @@ function App() {
     fetchPhotos();
   }, []);
 
-  const lastPhotoElementRef = useCallback((node: HTMLDivElement) => {
+  const lastPhotoElementRef = useCallback((node: HTMLDivElement | null) => {
     if (loading) return;
     if (observer.current) observer.current.disconnect();
     
@@ -61,13 +61,18 @@ function App() {
     if (node) observer.current.observe(node);
   }, [loading, hasMore, fetchPhotos]);
 
+  const handlePhotoClick = (photo: Photo) => {
+    console.log("Photo clicked:", photo.filename); // Check F12 console for this!
+    setSelectedPhoto(photo);
+  };
+
   return (
     <div className="App">
       <header className="header">
         <h1>Milhizer Family Photos</h1>
       </header>
 
-      <div className="photo-grid">
+      <main className="photo-grid">
         {photos.map((photo, index) => {
           const isLast = photos.length === index + 1;
           return (
@@ -75,21 +80,20 @@ function App() {
               ref={isLast ? lastPhotoElementRef : null} 
               key={`${photo.id}-${index}`} 
               className="photo-card"
-              onClick={() => setSelectedPhoto(photo)}
+              onClick={() => handlePhotoClick(photo)}
             >
               <img src={photo.thumbnailUrl} alt={photo.filename} loading="lazy" />
             </div>
           );
         })}
-      </div>
+      </main>
 
-      {/* Lightbox Modal */}
       {selectedPhoto && (
         <div className="lightbox-overlay" onClick={() => setSelectedPhoto(null)}>
-          <div className="lightbox-content">
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
             <img src={selectedPhoto.fullUrl} alt={selectedPhoto.filename} />
             <button className="close-btn" onClick={() => setSelectedPhoto(null)}>&times;</button>
-            <p className="filename-label">{selectedPhoto.filename}</p>
+            <div className="filename-label">{selectedPhoto.filename}</div>
           </div>
         </div>
       )}
