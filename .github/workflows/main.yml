@@ -15,7 +15,6 @@ jobs:
           node-version: 20
           
       - name: Install and Build
-        # This tells GitHub to run these commands INSIDE the frontend folder
         working-directory: ./frontend 
         run: |
           npm install
@@ -23,11 +22,11 @@ jobs:
         env:
           VITE_API_BASE: ${{ secrets.VITE_API_BASE }}
           
-     - name: Deploy to Firebase
+      - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          # Updated this line to match your GitHub Secret name
+          # This now matches your GitHub secret exactly
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
           channelId: live
           projectId: photo-app-f8102
